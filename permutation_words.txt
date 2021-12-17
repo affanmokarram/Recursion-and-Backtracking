@@ -1,0 +1,38 @@
+  Q>   Select k distinct character from word.
+
+
+
+package mypackage;
+import java.util.*;
+public class Main{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		String st=sc.next();
+		int k=sc.nextInt();
+		String str="";
+		HashSet<Character>set=new HashSet<>();
+		for(int i=0;i<st.length();i++) {
+			char ch=st.charAt(i);
+			if(set.contains(ch)==false) {
+				str=str+ch;
+				set.add(ch);
+			}
+		}
+		generate(0,0,str,k,"");
+		
+	}
+	static void generate(int cc,int csf,String str,int k,String ssf) {
+		
+		if(cc==str.length()) {
+			if(csf==k) {
+				System.out.println(ssf);
+				
+			}
+			return;
+		}
+		
+		
+		generate(cc+1,csf+1,str,k,ssf+str.charAt(cc));
+		generate(cc+1,csf,str,k,ssf);
+	}
+}
